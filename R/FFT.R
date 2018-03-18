@@ -17,7 +17,7 @@ FFT<-function(T_dlmW)
 
 	Nyquist=max(f_Hz)
 
-# Fast Fourier transformation:
+	# Fast Fourier transformation:
 	Fts<-fft(T_dlmW)/length(T_dlmW)
 
 out<-list(even_or_odd=even_or_odd,f_Hz=f_Hz,Nyquist=Nyquist,Fts=Fts)
