@@ -66,11 +66,12 @@
 	# Select the trend removal approach (either 'block_average' or 'linear_detrend')
 	trend_removal='linear_detrend'
 	
-	# Define the variable to analyse (ts,Q,C,u,v,w)
-	variable='ts'
+	# Define the variable(s) to analyse ('u','w','ts','Q','C'). In the case of multiple varaibles, use the standard vector definition (e.g. c('u','w'))
+	variable=c('u','w','ts','Q','C')
 
-	# Cretae output folder
-	dir.create(paste(Main_WD,'/Outputs/',variable,sep=''),showWarnings=FALSE)
+	# Cretae output folder(s)
+	for(n in 1:length(variable)){
+	dir.create(paste(Main_WD,'/Outputs/',variable[n],sep=''),showWarnings=FALSE)}
 	
 	for(i in 1:length(file))
 	{
