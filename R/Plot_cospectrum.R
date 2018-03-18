@@ -48,18 +48,18 @@ plot_cospectra<-function(Data,w_de_rot,Vde_det,variable,timestamp)
 
 	covariance=sum(Co)	# For further normalization by covariance
 
-####################################################################
-### Ensemble averages                                            ###
-#################################################################### 
+############################
+### Ensemble averages    ###
+############################ 
 
 	out=Ensemble(N=20,f_Hz,Nyquist,CD/covariance)
 	F=out$F
 	S=out$S
 	rm(out)
 
-################################
-### Plotting                 ###
-################################
+############################
+### Plotting             ###
+############################
 
 
 	png(paste(Main_WD,'/Outputs/',variable,'/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_',variable,'_c) co-spectrum.png',sep=''),type='cairo')	
