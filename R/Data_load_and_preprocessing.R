@@ -1,7 +1,6 @@
 Load<-function(file,variable)
 {
 	# Load input data
-
 	Unzipped_file<-unzip(file)[1]
 	L=integer(); n=1
 	while(length(L)<1)
@@ -32,7 +31,7 @@ Load<-function(file,variable)
 	Q<-Data$"H2O dry(mmol/mol)"
 	}
 
-	# CO2 concentration (µmol/mol)
+	# CO2 concentration (Âµmol/mol)
 	if(Analyser=='LI-7500'|Analyser=='LI-7500A')
 	{
 	C<-Data$"CO2 (umol/mol)"
@@ -40,7 +39,7 @@ Load<-function(file,variable)
 	C<-Data$"CO2 dry(umol/mol)"
 	}
 
-	# Sonic temperature (°C)
+	# Sonic temperature (Â°C)
 	ts<-Data$"Aux 4 - Ts (C)" 
 
 	#Vertical velcoity (m/s)
