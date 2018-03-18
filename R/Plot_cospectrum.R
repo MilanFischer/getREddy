@@ -46,7 +46,7 @@ plot_cospectra<-function(Data,w_de_rot,Vde_det,variable,timestamp)
 	CD=Cospectral_density(even_or_odd,f_Hz,Nyquist,Co)
 	sum(CD*df_Hz)
 
-	covariance=sum(Co)	# For further normalization by covariance
+	covariance=sum(Co)			# For further normalization by covariance
 
 ############################
 ### Ensemble averages    ###
