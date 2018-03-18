@@ -1,14 +1,14 @@
 # This script create continuos time series without any gaps and skipped scans
 
-Time_management<-function(data,X){
+Time_management<-function(Data,X){
 
 # Load the original timestamp
 	
-	T<-as.POSIXlt(as.character(paste(data$V5,data$V6,sep=" ")),origin = "1970-01-01 00:00:00.1",,tz="UTC")
+	T<-as.POSIXlt(as.character(paste(Data$"Date",Data$"Time",sep=" ")),origin = "1970-01-01 00:00:00.1",tz="UTC")
 	Date<-format(T,'%Y-%m-%d')
 	Hour<-format(T,'%H')
 	Minute<-format(T,'%M')
-	Seconds<-as.numeric(str_sub(gsub(":", ".", as.character(paste(data$V5,data$V6,sep=" "))), start= -6))
+	Seconds<-as.numeric(str_sub(gsub(":", ".", as.character(paste(Data$"Date",Data$"Time",sep=" "))), start= -6))
 	Seconds<-round(as.numeric(Seconds)/dSampling)*dSampling
 	Date<-paste(Date,' ',Hour,':',Minute,':',Seconds,sep='')
 	options(digits.secs=3)
@@ -55,7 +55,7 @@ Time_management<-function(data,X){
 # Remove the duplicates
 	filtered<-subset(merged,!duplicated(merged[,1]))
 
-# Order the data frame accroding to continuous timestamp
+# Order the data frame according to continuous timestamp
 	Final_order=filtered[order(as.POSIXlt(filtered[,1])),]
 
 # First and last non-NA index

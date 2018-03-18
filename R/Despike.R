@@ -2,9 +2,9 @@
 #            
 #        X        = 1-D data vector  
 #                    
-#        usage: Y = Despike(data,X)
+#        usage: Y = Despike(Data,X)
 
-Despike<-function(data,X,gapfill){
+Despike<-function(Data,X,gapfill){
 
 # Run 2 is moved behind the run 1 by one half of the window from run 1 - as a result, run 2 has one window less as comared to run 1 
 Despike_windows<-function(X,number_of_windows,run)
@@ -75,7 +75,7 @@ X_despiked[Index1]=NA;X_despiked[Index2]=NA
 	
 	if(gapfill %in% TRUE)
 	{
-	out=Time_management(data,X_despiked)
+	out=Time_management(Data,X_despiked)
 	Time=out$Time
 	Y=out$Y_interpol
 	}else{
