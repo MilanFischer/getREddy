@@ -4,7 +4,7 @@ plot_cospectra<-function(Data,w_de_rot,Vde_det,variable,timestamp)
 {
 
 ####################################################################
-### Fourier transformation                                         #
+### Fourier transformation                                       ###
 #################################################################### 
 
 	out=FFT(Vde_det)
@@ -22,7 +22,7 @@ plot_cospectra<-function(Data,w_de_rot,Vde_det,variable,timestamp)
 	rm(out)
 
 ####################################################################
-### Cospectral density (Stull 1988, p. 312-331)                    #
+### Cospectral density (Stull 1988, p. 312-331)                  ###
 #################################################################### 
 
 	df_Hz=f_Hz[2]-f_Hz[1]	
@@ -49,7 +49,7 @@ plot_cospectra<-function(Data,w_de_rot,Vde_det,variable,timestamp)
 	covariance=sum(Co)	# For further normalization by covariance
 
 ####################################################################
-### Ensemble averages                                              #
+### Ensemble averages                                            ###
 #################################################################### 
 
 	out=Ensemble(N=20,f_Hz,Nyquist,CD/covariance)
@@ -65,9 +65,9 @@ plot_cospectra<-function(Data,w_de_rot,Vde_det,variable,timestamp)
 	png(paste(Main_WD,'/Outputs/',variable,'/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_',variable,'_c) co-spectrum.png',sep=''),type='cairo')	
 
 	Intertial_range=(10^F)^(-7/3)		# Not multiplied by frequency
-	#Intertial_range=(10^F)^(-4/3)	# Premultiplied by frequency
+	# Intertial_range=(10^F)^(-4/3)		# Premultiplied by frequency
 
-	#Log-log presentation of cospectra
+	# Log-log presentation of cospectra
 
 	par(mfrow=c(1,1),oma=c(3.5,3.5,0,0)+1,mar=c(0,0,0,0),xpd=NA)
 	plot(log10(f_Hz[2:(which(f_Hz==Nyquist))]),log10(CD[2:(which(f_Hz==Nyquist))]/covariance),type='l',xaxt = 'n',xlab='Frequency (Hz)',
