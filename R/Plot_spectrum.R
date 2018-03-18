@@ -28,7 +28,7 @@ plot_spectra<-function(Data,Vde_det,variable,timestamp)
 	sum((abs(Fts))^2)
 	sum(SD*df_Hz)
 
-	Variance=sum(SD*df_Hz)					# For further normalization by variance
+	Variance=sum(SD*df_Hz)				# For further normalization by variance
 
 ################################
 ### Ensemble averages        ###
