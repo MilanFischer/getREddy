@@ -7,7 +7,6 @@ Cospectral_density<-function(even_or_odd,f_Hz,Nyquist,Co)
 	E=2*Co
 	}
 
-
 	CD=E/df_Hz
 
 	return(CD)
