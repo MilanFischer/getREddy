@@ -4,7 +4,7 @@ plot_spectra<-function(Data,Vde_det,variable,timestamp)
 {
 
 ####################################################################
-### Fourier transformation                                         #
+### Fourier transformation                                       ###
 #################################################################### 
 
 	out=FFT(Vde_det)
@@ -15,7 +15,7 @@ plot_spectra<-function(Data,Vde_det,variable,timestamp)
 	rm(out)
 
 ####################################################################
-### Spectral density (Stull 1988, p. 312-313)                      #
+### Spectral density (Stull 1988, p. 312-313)                    ###
 #################################################################### 
 
 	SD=Spectral_density(even_or_odd,f_Hz,Nyquist,Fts)
@@ -30,9 +30,9 @@ plot_spectra<-function(Data,Vde_det,variable,timestamp)
 
 	Variance=sum(SD*df_Hz)					# For further normalization by variance
 
-####################################################################
-### Ensemble averages                                              #
-#################################################################### 
+################################
+### Ensemble averages        ###
+################################ 
 
 	out=Ensemble(N=20,f_Hz,Nyquist,SD/Variance)
 	F=out$F
