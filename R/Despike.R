@@ -38,7 +38,7 @@ while(fulfilled %in% 'no')
 	Fc1=-plausibility_threshold*stda+xm
 	Fc2= plausibility_threshold*stda+xm
 
-	# Values that are outside given limits or that are missing are assignes as NA
+	# Values that are outside given limits or that are missing are assigned as NA
 	x[x<Fc1|x>Fc2|x %in% NA]=NA
 	
 	M=mean(x,na.rm=TRUE)
