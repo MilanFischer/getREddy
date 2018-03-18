@@ -31,7 +31,7 @@ Load<-function(file,variable)
 	Q<-Data$"H2O dry(mmol/mol)"
 	}
 
-	# CO2 concentration (Âµmol/mol)
+	# CO2 concentration (µmol/mol)
 	if(Analyser=='LI-7500'|Analyser=='LI-7500A')
 	{
 	C<-Data$"CO2 (umol/mol)"
@@ -39,7 +39,7 @@ Load<-function(file,variable)
 	C<-Data$"CO2 dry(umol/mol)"
 	}
 
-	# Sonic temperature (Â°C)
+	# Sonic temperature (°C)
 	ts<-Data$"Aux 4 - Ts (C)" 
 
 	#Vertical velcoity (m/s)
@@ -83,7 +83,7 @@ Load<-function(file,variable)
 	if(variable=='u'){
 	Vde=u_de_rot
 	}else if(variable=='w'){
-	Vde=W_de_rot
+	Vde=w_de_rot
 	}else if(variable=='ts'){
 	V=ts; Vde=Tde
 	}else if(variable=='Q'){

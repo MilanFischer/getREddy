@@ -24,7 +24,6 @@
 	source('Plot_cospectrum.r')
 	source('Spectral_density.r')
 	source('Cospectral_density.r')
-	source('Taper.r')
 	source('Timestamp.r')
 	source('Time_management_and_gap-filling.r')
 
