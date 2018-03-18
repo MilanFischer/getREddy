@@ -6,7 +6,7 @@
 
 Despike<-function(Data,X,gapfill){
 
-# Run 2 is moved behind the run 1 by one half of the window from run 1 - as a result, run 2 has one window less as comared to run 1 
+# Run 2 is moved behind the run 1 by one half of the window from run 1 - as a result, run 2 has one window less as compared to run 1 
 Despike_windows<-function(X,number_of_windows,run)
 {
 
@@ -38,7 +38,7 @@ while(fulfilled %in% 'no')
 	Fc1=-plausibility_threshold*stda+xm
 	Fc2= plausibility_threshold*stda+xm
 
-	# Values which are outside given limits or are missing are assignes as NA
+	# Values that are outside given limits or that are missing are assignes as NA
 	x[x<Fc1|x>Fc2|x %in% NA]=NA
 	
 	M=mean(x,na.rm=TRUE)
