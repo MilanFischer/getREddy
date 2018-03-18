@@ -98,11 +98,11 @@ Load<-function(file,variable)
 
 	if(variable %in% c('u','w'))
 	{
-	png(paste(Main_WD,'/Outputs/',variable,'/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_',variable,'_a) time-series.png',sep=''),type='cairo')
+	png(paste(Main_WD,'/Outputs/',variable,'/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_',variable,'_a) time-series.png',sep=''),type='cairo',width=4*480,height=480,units='px')
 	plot(Vde,type='l',ylab=variable,xlab='n')
 	dev.off()
 	}else{
-	png(paste(Main_WD,'/Outputs/',variable,'/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_',variable,'_a) time-series.png',sep=''),type='cairo')
+	png(paste(Main_WD,'/Outputs/',variable,'/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_',variable,'_a) time-series.png',sep=''),type='cairo',width=4*480,height=480,units='px')
 	plot(V,type='l',col='red',ylab=variable,xlab='n')
 	lines(Vde)
 	dev.off()
