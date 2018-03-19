@@ -59,9 +59,12 @@
 	# Time step (minutes)
 	Time_step=30
 
-	# Number of standard deviation used for despiking
-	plausibility_threshold=4
+	# Number of standard deviation used for despiking (Vickers and Mahrt, 1997)
+	plausibility_threshold=list(u=5, v=5, w=5, ts=5, Q=3.5, C=3.5)
 	number_of_windows=6
+
+	# Number of consecutive points which if detected suggest that it is not a spike (Vickers and Mahrt, 1997)
+	number_of_consecutive_points=9
 
 	# Select the trend removal approach (either 'block_average' or 'linear_detrend')
 	trend_removal='linear_detrend'
@@ -69,7 +72,7 @@
 	# Define the variable(s) to analyse ('u','w','ts','Q','C'). In the case of multiple varaibles, use the standard vector definition (e.g. c('u','w'))
 	variable=c('u','w','ts','Q','C')
 
-	# Cretae output folder(s)
+	# Create output folder(s)
 	for(n in 1:length(variable)){
 	dir.create(paste(Main_WD,'/Outputs/',variable[n],sep=''),showWarnings=FALSE)}
 	

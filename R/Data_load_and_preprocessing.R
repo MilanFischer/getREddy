@@ -42,7 +42,7 @@ Load<-function(file,variable)
 	# Sonic temperature (°C)
 	ts<-Data$"Aux 4 - Ts (C)" 
 
-	#Vertical velcoity (m/s)
+	# Vertical velocity (m/s)
 	u<-Data$"Aux 1 - U (m/s)" 
 	v<-Data$"Aux 2 - V (m/s)"
 	w<-Data$"Aux 3 - W (m/s)"
@@ -52,22 +52,23 @@ Load<-function(file,variable)
 	### Despike the time series ###
 	###############################
 
-	u_de=Despike(Data,u,gapfill=TRUE)$Y
-	v_de=Despike(Data,v,gapfill=TRUE)$Y
-	w_de=Despike(Data,w,gapfill=TRUE)$Y
+	u_de=Despike(Data,u,plausibility_threshold$u,gapfill=TRUE)$Y
+	v_de=Despike(Data,v,plausibility_threshold$v,gapfill=TRUE)$Y
+	w_de=Despike(Data,w,plausibility_threshold$w,gapfill=TRUE)$Y
 
 	if(any(variable=='ts')){
-	out_despike=Despike(Data,ts,gapfill=TRUE)
+	out_despike=Despike(Data,ts,plausibility_threshold$ts,gapfill=TRUE)
 	Tde=out_despike$Y
 	No_of_spikes_ts=out_despike$No_of_spikes}
 	if(any(variable=='Q')){
-	out_despike=Despike(Data,Q,gapfill=TRUE)
+	out_despike=Despike(Data,Q,plausibility_threshold$Q,gapfill=TRUE)
 	Qde=out_despike$Y
 	No_of_spikes_Q=out_despike$No_of_spikes}
 	if(any(variable=='C')){
-	out_despike=Despike(Data,C,gapfill=TRUE)
+	out_despike=Despike(Data,C,plausibility_threshold$C,gapfill=TRUE)
 	Cde=out_despike$Y
 	No_of_spikes_C=out_despike$No_of_spikes}
+
 
 	#############################
 	### Rotate the anemometer ###
@@ -92,6 +93,7 @@ Load<-function(file,variable)
 	if(any(variable=='ts')){V[,min(which(is.na(V[1,])))]=ts; names(V)[max(which(!is.na(V[1,])))]='ts'}
 	if(any(variable=='Q')){V[,min(which(is.na(V[1,])))]=Q; names(V)[max(which(!is.na(V[1,])))]='Q'}
 	if(any(variable=='C')){V[,min(which(is.na(V[1,])))]=C; names(V)[max(which(!is.na(V[1,])))]='C'}
+
 
 	########################
 	### Plot time-series ###

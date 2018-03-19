@@ -4,7 +4,7 @@
 #                    
 #        usage: Y = Despike(Data,X)
 
-Despike<-function(Data,X,gapfill){
+Despike<-function(Data,X,plausibility_threshold,gapfill){
 
 # Run 2 is moved behind the run 1 by one half of the window from run 1 - as a result, run 2 has one window less as compared to run 1 
 Despike_windows<-function(X,number_of_windows,run)
@@ -69,7 +69,50 @@ Run2=Despike_windows(X,number_of_windows,run=2)
 Index2=which(Run2 %in% NA)+(Time_step*60*f/number_of_windows/2)
 
 X_despiked=X
-X_despiked[Index1]=NA;X_despiked[Index2]=NA
+
+Index=c(Index1,Index2)
+Index=Index[!duplicated(Index)]
+Index=Index[order(Index)]
+
+# A few consecutive values with the same sign are not necessarily spikes but untypical physical phenomena
+if(length(Index)>=number_of_consecutive_points)
+{
+
+	# Padding by zeroes
+	Index=c(rep(0,number_of_consecutive_points-1),Index,rep(0,number_of_consecutive_points-1))
+	Index_new=Index
+
+	if(length(Index)>number_of_consecutive_points)
+	{
+	for(i in number_of_consecutive_points:(length(Index)-number_of_consecutive_points+1))
+		{
+		if(abs(mean(sign(X[Index[(i-floor(number_of_consecutive_points/2)):(i+floor(number_of_consecutive_points/2))]]-mean(X,na.rm=TRUE))))==1&
+		max(diff(Index[(i-floor(number_of_consecutive_points/2)):(i+floor(number_of_consecutive_points/2))]))==1|
+		abs(mean(sign(X[Index[(i-number_of_consecutive_points+1):i]]-mean(X,na.rm=TRUE))))==1&
+		max(diff(Index[(i-number_of_consecutive_points+1):i]))==1|
+		abs(mean(sign(X[Index[i:(i+number_of_consecutive_points-1)]]-mean(X,na.rm=TRUE))))==1&
+		max(diff(Index[i:(i+number_of_consecutive_points-1)]))==1)
+		{
+		Index_new[i]=Index_new[i]
+		}else{
+		Index_new[i]=NA
+		}
+	}
+	}
+
+	# Back to original vector length
+	Index=Index[number_of_consecutive_points:(length(Index)-number_of_consecutive_points+1)]
+	Index_new=Index_new[number_of_consecutive_points:(length(Index_new)-number_of_consecutive_points+1)]
+}else{
+	Index_new=rep(NA,length(Index))
+}
+
+
+# Clean the Index vector
+Index=Index[which(Index_new %in% NA)]
+
+# Despike the scalar vector 
+X_despiked[Index]=NA
 
 	No_of_spikes=length(which(X_despiked %in% NA))-No_of_NA
 	
