@@ -102,29 +102,34 @@ Load<-function(file,variable)
 	if(any(variable=='u')){
 	png(paste(Main_WD,'/Outputs/u/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_','u','_a) time-series.png',sep=''),type='cairo',width=4*480,height=480,units='px')
 	plot(Vde$u,type='l',ylab='u',xlab='n')
+	legend('bottomleft',bty='n',timestamp)
 	dev.off()}
 
 	if(any(variable=='w')){
 	png(paste(Main_WD,'/Outputs/w/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_','w','_a) time-series.png',sep=''),type='cairo',width=4*480,height=480,units='px')
 	plot(Vde$w,type='l',ylab='w',xlab='n')
+	legend('bottomleft',bty='n',timestamp)
 	dev.off()}
 
 	if(any(variable=='ts')){
 	png(paste(Main_WD,'/Outputs/ts/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_','ts','_a) time-series.png',sep=''),type='cairo',width=4*480,height=480,units='px')
 	plot(V$ts,type='l',col='red',ylab='ts',xlab='n')
 	lines(Vde$ts)
+	legend('bottomleft',bty='n',timestamp)
 	dev.off()}
 
 	if(any(variable=='Q')){
 	png(paste(Main_WD,'/Outputs/Q/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_','Q','_a) time-series.png',sep=''),type='cairo',width=4*480,height=480,units='px')
 	plot(V$Q,type='l',col='red',ylab='Q',xlab='n')
 	lines(Vde$Q)
+	legend('bottomleft',bty='n',timestamp)
 	dev.off()}
 
 	if(any(variable=='C')){
 	png(paste(Main_WD,'/Outputs/C/',format(as.POSIXct(timestamp),'%Y-%m-%d_%H%M'),'_','C','_a) time-series.png',sep=''),type='cairo',width=4*480,height=480,units='px')
 	plot(V$C,type='l',col='red',ylab='C',xlab='n')
 	lines(Vde$C)
+	legend('bottomleft',bty='n',timestamp)
 	dev.off()}
 
 
