@@ -86,7 +86,7 @@ if(length(Index)>=number_of_consecutive_points)
 			{
 			if(abs(mean(sign(X[Index[(i-number_of_consecutive_points+k):(i+k-1)]]-mean(X,na.rm=TRUE))))==1&
 			max(diff(Index[(i-number_of_consecutive_points+k):(i+k-1)]))==1)
-			{fulfilled='yes'; k=number_of_consecutive_points+1}else{fulfilled='no'; k=k+1}
+			{fulfilled='yes'}else{fulfilled='no'; k=k+1}
 			}
 		if(fulfilled=='yes')
 			{
