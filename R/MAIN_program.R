@@ -27,7 +27,6 @@
 	source('Timestamp.r')
 	source('Time_management_and_gap-filling.r')
 
-
 	# Save the path to the directory with the R codes
 	R_codes_WD<-getwd()
 
