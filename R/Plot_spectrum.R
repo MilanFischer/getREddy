@@ -1,5 +1,3 @@
-# Compute and plot spectrum
-
 plot_spectra<-function(Data,Vde_det,variable,timestamp)
 {
 

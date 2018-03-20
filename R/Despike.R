@@ -1,10 +1,5 @@
-# Despike.r :     removes spikes from a 1-D data vector and fill the gaps (including skipped scans) by the linear interpolation
-#            
-#        X        = 1-D data vector  
-#                    
-#        usage: Y = Despike(Data,X)
-
-Despike<-function(Data,X,plausibility_threshold,gapfill){
+Despike<-function(Data,X,plausibility_threshold,gapfill)
+{
 
 # Run 2 is moved behind the run 1 by one half of the window from run 1 - as a result, run 2 has one window less as compared to run 1 
 Despike_windows<-function(X,number_of_windows,run)
@@ -86,18 +81,20 @@ if(length(Index)>=number_of_consecutive_points)
 	{
 	for(i in number_of_consecutive_points:(length(Index)-number_of_consecutive_points+1))
 		{
-		if(abs(mean(sign(X[Index[(i-floor(number_of_consecutive_points/2)):(i+floor(number_of_consecutive_points/2))]]-mean(X,na.rm=TRUE))))==1&
-		max(diff(Index[(i-floor(number_of_consecutive_points/2)):(i+floor(number_of_consecutive_points/2))]))==1|
-		abs(mean(sign(X[Index[(i-number_of_consecutive_points+1):i]]-mean(X,na.rm=TRUE))))==1&
-		max(diff(Index[(i-number_of_consecutive_points+1):i]))==1|
-		abs(mean(sign(X[Index[i:(i+number_of_consecutive_points-1)]]-mean(X,na.rm=TRUE))))==1&
-		max(diff(Index[i:(i+number_of_consecutive_points-1)]))==1)
-		{
-		Index_new[i]=Index_new[i]
-		}else{
-		Index_new[i]=NA
+		k=1; fulfilled='no'
+		while(fulfilled=='no'&k<=number_of_consecutive_points)
+			{
+			if(abs(mean(sign(X[Index[(i-number_of_consecutive_points+k):(i+k-1)]]-mean(X,na.rm=TRUE))))==1&
+			max(diff(Index[(i-number_of_consecutive_points+k):(i+k-1)]))==1)
+			{fulfilled='yes'; k=number_of_consecutive_points+1}else{fulfilled='no'; k=k+1}
+			}
+		if(fulfilled=='yes')
+			{
+			Index_new[i]=Index_new[i]
+			}else{
+			Index_new[i]=NA
+			}
 		}
-	}
 	}
 
 	# Back to original vector length
@@ -108,7 +105,7 @@ if(length(Index)>=number_of_consecutive_points)
 }
 
 
-# Clean the Index vector
+# Trim the Index vector
 Index=Index[which(Index_new %in% NA)]
 
 # Despike the scalar vector 

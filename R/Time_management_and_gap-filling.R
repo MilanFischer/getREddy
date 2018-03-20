@@ -1,5 +1,3 @@
-# This script create continuos time series without any gaps and skipped scans
-
 Time_management<-function(Data,X){
 
 # Load the original timestamp

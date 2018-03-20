@@ -1,7 +1,7 @@
 ###########################################################################
 #                                                                         #
 #      --------------------------------------------------------------     #
-#       getREddy - initial exploring of the raw eddy covariance data      #
+#       getREddy - Initial exploring of the raw eddy covariance data      #
 #      --------------------------------------------------------------     #
 #                                                                         #
 #       Author: Milan Fischer                                             #

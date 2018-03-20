@@ -1,5 +1,3 @@
-# Compute and plot cospectrum
-
 plot_cospectra<-function(Data,w_de_rot,Vde_det,variable,timestamp)
 {
 
