@@ -79,7 +79,7 @@
 	for(i in 1:length(file))
 	{
 	graphics.off()
-	print(Load(file[i],variable)$timestamp)
+	try(print(Load(file[i],variable)$timestamp),silent=TRUE)
 	flush.console()
 	}
 	graphics.off()
