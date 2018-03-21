@@ -64,7 +64,7 @@
 	number_of_windows=6
 
 	# Number of consecutive points which if detected suggest that it is not a spike (Vickers and Mahrt, 1997)
-	number_of_consecutive_points=3
+	number_of_consecutive_points=10
 
 	# Select the trend removal approach (either 'block_average' or 'linear_detrend')
 	trend_removal='linear_detrend'
